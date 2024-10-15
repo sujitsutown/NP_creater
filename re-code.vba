@@ -43,21 +43,28 @@ Public Sub Bc_Create(ByVal namae As String, ByVal dep As String, ByVal about As 
     Cells(sjtStartRow, sjtStartCol).Font.Size = 18
 
     '' 部署名の記入
-    depStartrow = sjtStartRow + 4
+    depStartRow = sjtStartRow + 4
     depStartCol = sjtStartCol
     depEndRow = sjtEndRow + 2
     depEndCol = sjtEndCol - 1
     
-    Cells(depStartrow, depStartCol).HorizontalAlignment = xlCenter
-    Cells(depStartrow, depStartCol).VerticalAlignment = xlCenter
-    Cells(depStartrow, depStartCol).Font.Color = RGB(32, 32, 32)
-    Range(Cells(depStartrow, depStartCol), Cells(depEndRow, depEndCol)).Merge
+    Cells(depStartRow, depStartCol).HorizontalAlignment = xlCenter
+    Cells(depStartRow, depStartCol).VerticalAlignment = xlCenter
+    Cells(depStartRow, depStartCol).Font.Color = RGB(32, 32, 32)
+    Range(Cells(depStartRow, depStartCol), Cells(depEndRow, depEndCol)).Merge
     If about = "" Then
-        Cells(depStartrow, depStartCol).Value = dep
+        Cells(depStartRow, depStartCol).Value = dep
+        Cells(depStartRow, depStartCol).Font.Size = 18
     Else
-        Cells(depStartrow, depStartCol).Value = about
+        Cells(depStartRow, depStartCol).Value = about
+        Length = LenB(Cells(depStartRow, depStartCol).Value)
+        If Length >= 16 Then
+            Cells(depStartRow, depStartCol).Font.Size = 16
+        Else
+            Cells(depStartRow, depStartCol).Font.Size = 18
+        End If
     End If
-    Cells(depStartrow, depStartCol).Font.Size = 18
+
     
     '' 氏名の記入
     nameStartRow = sjtStartRow + 6
@@ -70,7 +77,12 @@ Public Sub Bc_Create(ByVal namae As String, ByVal dep As String, ByVal about As 
     Cells(nameStartRow, nameStartCol).Font.Color = RGB(32, 32, 32)
     Range(Cells(nameStartRow, nameStartCol), Cells(nameEndRow, nameEndCol)).Merge
     Cells(nameStartRow, nameStartCol).Value = namae
-    Cells(nameStartRow, nameStartCol).Font.Size = 26
+    Length = LenB(Cells(nameStartRow, nameStartCol).Value)
+    If Length < 20 Then
+        Cells(nameStartRow, nameStartCol).Font.Size = 26
+    Else
+        Cells(nameStartRow, nameStartCol).Font.Size = 22
+    End If
     
     '' 休憩中の記入
     kyuStartRow = sjtStartRow
@@ -114,4 +126,3 @@ Public Sub Bc_Create(ByVal namae As String, ByVal dep As String, ByVal about As 
     End If
 
 End Sub
-

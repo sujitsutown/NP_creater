@@ -4,4 +4,4 @@
 
 ---
 
-Develop by [Hinata Hirase](https://github.com/hnt1028).
+Developed by [Hinata Hirase](https://github.com/hnt1028).
